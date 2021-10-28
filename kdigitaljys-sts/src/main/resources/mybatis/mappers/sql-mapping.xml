@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.EmpDAO">
+	<select id="emplist" resultType="empVO">
+		select * from employees
+	</select>
+
+	<select id="empdeptlist" resultType="empVO"
+		parameterType="int[]">
+		select * from employees where department_id in
+		<foreach collection="array" item="d_list" open="(" close=")"
+			separator=",">
+			#{d_list}
+		</foreach> <!-- 반복할때 foreach 태그 사용. 배열이면 소문자로 array. d_list이름으로 지정 -->
+	</select> <!-- 여는 괄호, 닫는 괄호, 구분자는 콤마 -->
+	
+	
+	
+</mapper>
